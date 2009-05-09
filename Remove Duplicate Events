@@ -108,15 +108,3 @@ Traps:
 
 Problem:
 - Beim title müsste man trimWhiteSpace machen. Wie?
-
-
-
-F-Script 2.0
-
-Finder := SBApplication applicationWithBundleIdentifier:'com.apple.finder'.
-Finder desktop files name
-Finder disks
-
-
-EyeTV := SBApplication applicationWithBundleIdentifier:'com.elgato.eyetv'.
-EyeTV recordings title

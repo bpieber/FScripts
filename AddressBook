@@ -1,0 +1,6 @@
+groups := ABAddressBook sharedAddressBook groups.
+finis := groups where: groups name = 'FINIS'.
+
+finis valueForProperty: kABGroupNameProperty.
+
+finis members valueForProperty: kABLastNameProperty

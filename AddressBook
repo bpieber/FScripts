@@ -4,3 +4,70 @@ finis := groups where: groups name = 'FINIS'.
 finis valueForProperty: kABGroupNameProperty.
 
 finis members valueForProperty: kABLastNameProperty
+
+people := ABAddressBook sharedAddressBook people.
+person := people at: 0.
+phones := person valueForProperty: kABPhoneProperty.
+
+addressLists := people valueForProperty: kABAddressProperty.
+
+getAddresses := [:person |
+	| result addressList |
+	result := {}.
+	addressList := (person valueForProperty: kABAddressProperty) mutableCopy.
+	addressList == nil ifFalse: [
+		0 to: addressList count - 1 do: [:i |
+			| address zip |
+			address := (addressList valueAtIndex: i) mutableCopy.
+			zip := address objectForKey: kABAddressZIPKey.
+			(zip hasPrefix: 'A-') ifTrue: [result add: address]]].
+	result].
+	
+getAddresses value: @ (people at: {3, 8}).
+
+getAddresses value: @ people
+
+(getAddresses value: @ people) \ #++
+
+fixZip := [:address |
+	| zip |
+	zip := address objectForKey: kABAddressZIPKey.
+	address setObject: (zip substringFromIndex: 2) forKey: kABAddressZIPKey].
+	
+fixZip value: ((getAddresses value: @ (people at: {3, 8})) \ #++).
+
+ABAddressBook sharedAddressBook hasUnsavedChanges
+
+ABAddressBook sharedAddressBook save
+
+person lastName
+
+person allProperties
+
+person valueForProperty: kABJobTitleProperty
+
+phones count
+
+phones labelAtIndex: 1
+
+[:i | phones labelAtIndex: i] value: @@ {0, 1, 2, 3}
+
+phones identifierAtIndex: 1
+
+phones propertyType
+
+
+ABAddressBook sharedAddressBook people valueForProperty: kABJobTitleProperty
+
+
+
+
+AddressBook := SBApplication applicationWithBundleIdentifier:'com.apple.AddressBook'.
+addresses := AddressBook people addresses.
+addresses count
+
+addresses zip count
+
+
+Konstanten:
+http://developer.apple.com/documentation/userexperience/Reference/AddressBook/Classes/ABPerson_Class/Reference/Reference.html#//apple_ref/doc/uid/20001546-BCIFJHBG

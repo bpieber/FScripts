@@ -1,0 +1,18 @@
+"Finde alle Dateien oder Ordner, die nur auf HD2 sind und nicht auf HD1. Sortiere sie nach Namen."
+{'HD1', 'HD2', 'HD3', 'HD4', 'MD1', 'WD2', 'WD3', 'WD4', 'WD5', 'WD6', 'WD7', 'WD8', 'WD9'}
+
+hd1 := NSFileManager defaultManager directoryContentsAtPath: '/EyeTV Recordings HD1'.
+hd2 := NSFileManager defaultManager directoryContentsAtPath: '/Volumes/HD2/EyeTV Recordings HD2'.
+neu := hd2 difference: hd1.
+neu at: (neu sort)
+
+NSFileManager defaultManager directoryContentsAtPath: '/EyeTV Archive'
+
+"Eine andere Alternative wäre die ScriptingBridge zu verwenden, z.B."
+Finder := SBApplication applicationWithBundleIdentifier:'com.apple.finder'.
+Finder desktop files name
+
+Finder disks
+
+EyeTV := SBApplication applicationWithBundleIdentifier:'com.elgato.eyetv'.
+EyeTV recordings title
